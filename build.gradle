@@ -1,0 +1,27 @@
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+apply plugin: 'java'
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'javafx-gradle-plugin'
+
+jfx {
+    mainClass = 'runner.Main'
+    vendor = 'evandro-slv'
+    useEnvironmentRelativeExecutables = false
+}
+
+dependencies {
+    compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc', version: '7.4.1.jre8'
+}

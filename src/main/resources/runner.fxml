@@ -1,0 +1,73 @@
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<TilePane fx:controller="runner.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center">
+    <VBox spacing="10">
+        <HBox spacing="10">
+            <TextArea fx:id="query" text="select * from teste" />
+            <VBox spacing="10">
+                <VBox spacing="2">
+                    <Label style="-fx-font-weight: bold;">Number of Requests</Label>
+                    <Spinner fx:id="numRequests" min="1" max="1000000" initialValue="100" editable="true" />
+                </VBox>
+<!--                Todo: -->
+<!--                <VBox spacing="2">-->
+<!--                    <Label style="-fx-font-weight: bold">Number of Threads</Label>-->
+<!--                    <Spinner fx:id="numThreads" min="1" max="256" initialValue="10" editable="true" />-->
+<!--                </VBox>-->
+                <Button fx:id="start" text="Start" minWidth="100" onAction="#action" />
+                <Button text="Clean buffers" minWidth="100" onAction="#cleanBuffers" />
+                <Button text="Free cache" minWidth="100" onAction="#freeCache" />
+            </VBox>
+        </HBox>
+        <HBox spacing="10">
+            <VBox spacing="2">
+                <Label style="-fx-font-weight: bold">Elapsed Time</Label>
+                <TextField fx:id="elapsedTime" style="-fx-control-inner-background: black; -fx-opacity: 1.0; -fx-alignment: center-right" text="00:00:00.000" disable="true" maxWidth="120" />
+            </VBox>
+            <VBox spacing="2">
+                <Label style="-fx-font-weight: bold"># Completed</Label>
+                <TextField fx:id="numCompleted" style="-fx-control-inner-background: black; -fx-opacity: 1.0; -fx-alignment: center-right" text="0" disable="true" maxWidth="120" />
+            </VBox>
+            <VBox spacing="2">
+                <Label style="-fx-font-weight: bold">Execution Time (Avg.)</Label>
+                <TextField fx:id="executionTime" style="-fx-control-inner-background: black; -fx-opacity: 1.0; -fx-alignment: center-right" text="0.0000" disable="true" />
+            </VBox>
+            <VBox spacing="2">
+                <Label style="-fx-font-weight: bold">CPU Time (Avg.)</Label>
+                <TextField fx:id="cpuTime" style="-fx-control-inner-background: black; -fx-opacity: 1.0; -fx-alignment: center-right" text="0.0000" disable="true" />
+            </VBox>
+            <VBox spacing="2">
+                <Label style="-fx-font-weight: bold">Errors</Label>
+                <TextField style="-fx-control-inner-background: black; -fx-opacity: 1.0; -fx-alignment: center-right" text="0" disable="true" maxWidth="100" />
+            </VBox>
+        </HBox>
+        <TextArea fx:id="result" style="-fx-control-inner-background: black; -fx-opacity: 1.0; -fx-alignment: center-right" />
+        <HBox>
+            <VBox spacing="2">
+                <HBox>
+                    <LineChart fx:id="executionTimeChart">
+                        <xAxis>
+                            <NumberAxis label="Request #" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Execution time (ms)" side="LEFT" />
+                        </yAxis>
+                    </LineChart>
+                    <LineChart fx:id="cpuTimeChart">
+                        <xAxis>
+                            <NumberAxis label="Request #" />
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="CPU time (ms)" side="LEFT" />
+                        </yAxis>
+                    </LineChart>
+                </HBox>
+            </VBox>
+        </HBox>
+        <Button fx:id="clearChart" text="Clear chart data" minWidth="100" onAction="#clearChart" />
+        <Button text="Settings" minWidth="100" onAction="#configure" />
+    </VBox>
+</TilePane>
